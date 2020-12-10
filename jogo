@@ -1,0 +1,1339 @@
+//https://youtu.be/X5TojqrZ_5c
+//https://youtu.be/_CK7tBImCkU
+var tela=1
+var img,imgeu,img3,imgfim,imggg,img5,img2,img4;
+var relogiof=750
+var relogio=0
+var pontos=0
+var song,song2,song3
+var slider
+var myFont
+var vetor=[]
+var vetor2=[]
+var nomes=["MAÇÃ","BANANA","PERA","CEREJA"]
+var nomes2=["ABACAXI","AMORA","COCO","MORANGO"]
+var randoimg
+var num=0
+var num2=0
+var cont;
+var alter=[]
+var alter2=[]
+function preload() {
+  img = loadImage('mon.png');
+  img2= loadImage('bg3.png')
+  imgeu = loadImage('eu.jpg');
+  img3 = loadImage('floresta.png');
+  imgfim = loadImage('fim.png');
+  imggg = loadImage('vitoria.png');
+  img4= loadImage('bg4.png')
+  img5= loadImage('bg2.png')
+  song= loadSound("menu.mp3")
+  song2= loadSound("efeito1.mp3")
+  song3= loadSound('gameover.ogg')
+  myFont = loadFont('fonte.ttf')
+  vetor[0]={
+    ref: "MAÇÃ",
+    image:loadImage('apple.png')
+  }
+  vetor[1]={
+    ref:"BANANA",
+    image: loadImage('banana.png')
+  }
+  vetor[2]={
+    ref:"PERA",
+    image:loadImage('pera.png')
+  }
+  vetor[3]={
+    ref:"CEREJA",
+    image:loadImage('cherry.png')
+  }
+  vetor2[0]={
+    ref:"ABACAXI",
+    image:loadImage('abacaxi.png')
+  }
+  vetor2[1]={
+    ref:"AMORA",
+    image:loadImage('amora.png')
+  }
+  vetor2[2]={
+    ref:"COCO",
+    image:loadImage('coco.png')
+  }
+  vetor2[3]={
+    ref:"MORANGO",
+    image:loadImage('morango.png')
+  }
+}
+function setup() {
+  createCanvas(500, 500);
+  frameRate(30)
+  slider= createSlider(0,1,0.5,0.01)
+  song.play();
+  song.setVolume(0.1)
+  song2.setVolume(0.3)
+  textFont(myFont)
+  variar();
+  variarAlternativa();
+  variar2();
+  variarAlternativa2();
+}
+function draw() {
+  if(tela===1){
+  background(img);
+  menu()
+    song.setVolume(slider.value())
+  }
+  if(tela===2){
+    background(img3)
+    fase1()
+    image(vetor[num].image,210,100,100,100)
+  }
+  if(tela===3){
+    background(img)
+    comojogar()
+  }
+  if(tela===4){
+    background(img)
+    creditos()
+    image(imgeu,150,100,210,200)
+  }
+  if(tela===5){
+    background(imgfim)
+    acabou()
+  }
+  if(tela===6){
+    background(imggg)
+    ganhou()
+  }
+  if(tela===7){
+    background(img5)
+    fase2()
+    image(vetor[num].image,210,100,100,100)
+  }
+  if(tela===8){
+    background(img)
+    nice()
+  }
+  if(tela===9){
+    background(img2)
+    fase3()
+    image(vetor[num].image,210,100,100,100)
+  }
+  if(tela===10){
+    background(img4)
+    fase4()
+    image(vetor[num].image,210,100,100,100)
+  }
+  if(tela===11){
+    background(img)
+    nice2()
+  }
+  if(tela===12){
+    background(img)
+    nice3()
+  }
+  if(tela===13){
+    background(img3)
+    fase5()
+    image(vetor2[num2].image,210,100,100,100)
+  }
+  if(tela===14){
+    background(img)
+    nice4()
+  }
+  if(tela===15){
+    background(img)
+    nice5()
+  }
+  if(tela===16){
+    background(img5)
+    fase6()
+    image(vetor2[num2].image,210,100,100,100)
+  }
+  if(tela===17){
+    background(img2)
+    fase7()
+    image(vetor2[num2].image,210,100,100,100)
+  }
+  if(tela===18){
+    background(img4)
+    fase8()
+    image(vetor2[num2].image,210,100,100,100)
+  }
+  if(tela===19){
+    background(img)
+    nice6()
+  }
+  if(tela===20){
+    background(img)
+    nice7()
+  }
+}
+function menu(){
+  fill(255)
+  rect(50,105,200,50)
+  rect(50,180,200,50)
+  rect(50,250,200,50)
+  fill(0,255,0)
+  rect(110,25,285,50)
+  if(mouseX >50 &&mouseX< 50+210 && mouseY> 110 && mouseY<110+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(50,105,200,50)
+    if(mouseIsPressed){
+      tela=2
+    }
+  }
+  if(mouseX >50 &&mouseX< 50+210 && mouseY> 180 && mouseY<180+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(50,180,200,50)
+    if(mouseIsPressed){
+      tela=3
+    }
+  }
+  if(mouseX >50 &&mouseX< 50+210 && mouseY> 250 && mouseY<250+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(50,250,200,50)
+    if(mouseIsPressed){
+      tela=4
+    }
+  }
+  textSize(32)
+  fill(255,100,0)
+  stroke(0,0,200)
+  text('ME DIGA QUAL É', 120, 60)
+  
+  textSize(28)
+  text('JOGAR', 60, 140)
+  text('INSTRUÇÕES', 60, 210)
+  text('CREDITOS', 60, 280)
+  relogiof=750
+  pontos=0
+}
+function fase1(){
+  rect(180,95,160,120)
+  fill(255)
+  rect(10,5,150,40)
+  rect(350,5,140,40)
+  rect(140,50,230,40)
+  rect(70,290,170,40)
+  rect(70,380,170,40)
+  rect(290,380,170,40)
+  rect(290,290,170,40)
+  textSize(25)
+  text('TEMPO:'+relogio,360,30)
+  text('PONTOS:'+pontos,20,30)
+  if(relogio>=0 && relogiof>=0){
+  relogio=parseInt(relogiof/30)
+  relogiof=relogiof-1
+  }
+  if(relogio===0){
+    tela=5
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,290,170,40)
+    if(mouseIsPressed){
+      if(alter[0]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=8
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,380,170,40)
+    if(mouseIsPressed){
+      if(alter[1]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=8
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  if(mouseX >290 &&mouseX< 290+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,380,170,40)
+    if(mouseIsPressed){
+      if(alter[3]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=8
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  if(mouseX>290 && mouseX<290+170 && mouseY>290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,290,170,40)
+    if(mouseIsPressed){
+      if(alter[2]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=8
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(30)
+  text('OQUE É ISSO?', 150,80)
+  text(alter[0],80, 320)
+  text(alter[1], 80,410)
+  text(alter[2], 300,320)
+  text(alter[3],300,410)
+}
+function comojogar(){
+  rect(15,25,220,40)
+  fill(255)
+  rect(5,115,465,100)
+  rect(5,230,480,60)
+  rect(70,75,360,35)
+  rect(15,25,225,40)
+  if(mouseX >15 &&mouseX< 15+220 && mouseY> 25 && mouseY<25+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(15,25,225,40)
+    if(mouseIsPressed){
+      tela=1
+    }
+    }
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(20)
+  text('RETORNAR AO MENU', 20, 50)
+  
+  textSize(21)
+  text('ANO:3 ANO DO FUNDAMENTAL', 85, 100)
+  
+  textSize(20)
+  text('MATÉRIA:GEOGRAFIA',10,140)
+  textSize(16)
+  text('(EF03GE05) Identificar alimentos, minerais e outros',10,160)
+  text('produtos cultivados e extraídos da natureza, comparando as', 10,180)
+  text('atividades de trabalho em diferentes lugares.', 10,200)
+  textSize(20)
+  text('UMA IMAGEM VAI APARECER NA TELA E VOCÊ',10,260) 
+  text('DEVE CLICAR NO NOME DAQUELA FIGURA',10,280)
+}
+function creditos(){
+  fill(255)
+  rect(15,25,220,40)
+  fill(255)
+  rect(15,315,480,40)
+  if(mouseX >15 &&mouseX< 15+220 && mouseY> 25 && mouseY<25+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(15,25,220,40)
+    if(mouseIsPressed){
+      tela=1
+    }
+    }
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(20)
+  text('RETORNAR AO MENU', 20, 50)
+  textSize(17)
+  text('PROGRAMADOR:ALEX SANDRO PINHO SALVIANO FILHO',20,340)
+}
+function acabou(){
+  fill(255)
+  rect(100,100,305,50)
+  rect(15,25,220,40)
+  rect(140,180,200,50)
+  textSize(37)
+  text('DERROTA',150,220)
+  text('PONTUAÇÃO:'+pontos,110,140)
+  if(mouseX >15 &&mouseX< 15+220 && mouseY> 25 && mouseY<25+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(15,25,220,40)
+    if(mouseIsPressed){
+      tela=1
+    }
+  }
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(20)
+  text('RETORNAR AO MENU', 20, 50)
+}
+function ganhou(){
+  fill(255)
+  rect(15,25,220,40)
+  rect(135,100,220,50)
+  rect(140,160,200,40)
+  textSize(39)
+  text('PARABENS', 140,140)
+  textSize(25)
+  text('PONTUAÇÃO:'+pontos,150,190)
+  if(mouseX>15 && mouseX<15+220 && mouseY>25 && mouseY<25+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(15,25,220,40)
+    if(mouseIsPressed){
+      tela=1
+    }
+  }
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(20)
+  text('RETORNAR AO MENU',20,50)
+}
+function fase2(){
+  rect(180,95,160,120)
+  fill(255)
+  rect(10,5,150,40)
+  rect(350,5,140,40)
+  rect(140,50,230,40)
+  rect(70,290,170,40)
+  rect(70,380,170,40)
+  rect(290,380,170,40)
+  rect(290,290,170,40)
+  textSize(25)
+  text('TEMPO:'+relogio,360,30)
+  text('PONTOS:'+pontos,20,30)
+  if(relogio>=0 && relogiof>=0){
+  relogio=parseInt(relogiof/30)
+  relogiof=relogiof-1
+  }
+  if(relogio===0){
+    tela=5
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,290,170,40)
+    if(mouseIsPressed){
+      if(alter[0]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=11
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,380,170,40)
+    if(mouseIsPressed){
+      if(alter[1]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=11
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  if(mouseX >290 &&mouseX< 290+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,380,170,40)
+    if(mouseIsPressed){
+      if(alter[3]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=11
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  if(mouseX>290 && mouseX<290+170 && mouseY>290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,290,170,40)
+    if(mouseIsPressed){
+      if(alter[2]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=11
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(30)
+  text('OQUE É ISSO?', 150,80)
+  text(alter[0],80, 320)
+  text(alter[1], 80,410)
+  text(alter[2], 300,320)
+  text(alter[3],300,410)
+}
+function nice(){
+   fill(255)
+  rect(140,25,340,50)
+  rect(160,160,170,50)
+  fill(255)
+  if(mouseX >140 &&mouseX< 140+340 && mouseY> 25 && mouseY<25+50){
+    fill(200)
+    stroke(0,255,0)
+  rect(140,25,340,50)
+    if(mouseIsPressed){
+      tela=7
+    }
+    }
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(32)
+  text('PROXIMA PERGUNTA',150,60)
+  text('ACERTOU',170,200)
+}
+function nice2(){
+  fill(255)
+  rect(140,25,340,50)
+  rect(160,160,170,50)
+  fill(255)
+  if(mouseX >140 &&mouseX< 140+340 && mouseY> 25 && mouseY<25+50){
+    fill(200)
+    stroke(0,255,0)
+  rect(140,25,340,50)
+    if(mouseIsPressed){
+      tela=9
+    }
+    }
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(32)
+  text('PROXIMA PERGUNTA',150,60)
+  text('ACERTOU',170,200)
+}
+function nice3(){
+   fill(255)
+  rect(140,25,340,50)
+  rect(160,160,170,50)
+  fill(255)
+  if(mouseX >140 &&mouseX< 140+340 && mouseY> 25 && mouseY<25+50){
+    fill(200)
+    stroke(0,255,0)
+  rect(140,25,340,50)
+    if(mouseIsPressed){
+      tela=10
+    }
+    }
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(32)
+  text('PROXIMA PERGUNTA',150,60)
+  text('ACERTOU',170,200)
+}
+function variar(){
+  for(i=0;i< 30; i++){
+    var aux, a, b;
+    a = int(random(0,3.99));
+    b = int(random(0,3.99));
+    
+    aux = vetor[a].image;
+    vetor[a].image = vetor[b].image;
+    vetor[b].image = aux;
+
+    aux = vetor[a].ref;
+    vetor[a].ref = vetor[b].ref;
+    vetor[b].ref = aux;
+    
+  }
+}
+function variarAlternativa(){
+  cont = int(random(0,3.99));
+  alter[cont] = nomes[num];
+
+  for(var i=1; i<4; i++){
+    alter[(cont+i)%4] = nomes[(num+i)%4];
+  }
+}
+function fase3(){
+  rect(180,95,160,120)
+  fill(255)
+  rect(10,5,150,40)
+  rect(350,5,140,40)
+  rect(140,50,230,40)
+  rect(70,290,170,40)
+  rect(70,380,170,40)
+  rect(290,380,170,40)
+  rect(290,290,170,40)
+  textSize(25)
+  text('TEMPO:'+relogio,360,30)
+  text('PONTOS:'+pontos,20,30)
+  if(relogio>=0 && relogiof>=0){
+  relogio=parseInt(relogiof/30)
+  relogiof=relogiof-1
+  }
+  if(relogio===0){
+    tela=5
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,290,170,40)
+    if(mouseIsPressed){
+      if(alter[0]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=12
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,380,170,40)
+    if(mouseIsPressed){
+      if(alter[1]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=12
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  if(mouseX >290 &&mouseX< 290+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,380,170,40)
+    if(mouseIsPressed){
+      if(alter[3]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=12
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  if(mouseX>290 && mouseX<290+170 && mouseY>290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,290,170,40)
+    if(mouseIsPressed){
+      if(alter[2]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=12
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(30)
+  text('OQUE É ISSO?', 150,80)
+  text(alter[0],80, 320)
+  text(alter[1], 80,410)
+  text(alter[2], 300,320)
+  text(alter[3],300,410)
+}
+function fase4(){
+ rect(180,95,160,120)
+  fill(255)
+  rect(10,5,150,40)
+  rect(350,5,140,40)
+  rect(140,50,230,40)
+  rect(70,290,170,40)
+  rect(70,380,170,40)
+  rect(290,380,170,40)
+  rect(290,290,170,40)
+  textSize(25)
+  text('TEMPO:'+relogio,360,30)
+  text('PONTOS:'+pontos,20,30)
+  if(relogio>=0 && relogiof>=0){
+  relogio=parseInt(relogiof/30)
+  relogiof=relogiof-1
+  }
+  if(relogio===0){
+    tela=5
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,290,170,40)
+    if(mouseIsPressed){
+      if(alter[0]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=14
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,380,170,40)
+    if(mouseIsPressed){
+      if(alter[1]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=14
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  if(mouseX >290 &&mouseX< 290+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,380,170,40)
+    if(mouseIsPressed){
+      if(alter[3]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=14
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  if(mouseX>290 && mouseX<290+170 && mouseY>290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,290,170,40)
+    if(mouseIsPressed){
+      if(alter[2]==vetor[num].ref){
+        variar()
+        variarAlternativa()
+      song2.play()
+      pontos=pontos+1
+      tela=14
+      }
+      else{
+        tela=5;
+        variar();
+        variarAlternativa()
+      }
+    }
+  }
+  
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(30)
+  text('OQUE É ISSO?', 150,80)
+  text(alter[0],80, 320)
+  text(alter[1], 80,410)
+  text(alter[2], 300,320)
+  text(alter[3],300,410)
+}
+function fase5(){
+  rect(180,95,160,120)
+  fill(255)
+  rect(10,5,150,40)
+  rect(350,5,140,40)
+  rect(140,50,230,40)
+  rect(70,290,170,40)
+  rect(70,380,170,40)
+  rect(290,380,170,40)
+  rect(290,290,170,40)
+  textSize(25)
+  text('TEMPO:'+relogio,360,30)
+  text('PONTOS:'+pontos,20,30)
+  if(relogio>=0 && relogiof>=0){
+  relogio=parseInt(relogiof/30)
+  relogiof=relogiof-1
+  }
+  if(relogio===0){
+    tela=5
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,290,170,40)
+    if(mouseIsPressed){
+      if(alter2[0]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=15
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,380,170,40)
+    if(mouseIsPressed){
+      if(alter2[1]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=15
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  if(mouseX >290 &&mouseX< 290+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,380,170,40)
+    if(mouseIsPressed){
+      if(alter2[3]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=15
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  if(mouseX>290 && mouseX<290+170 && mouseY>290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,290,170,40)
+    if(mouseIsPressed){
+      if(alter2[2]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=15
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(30)
+  text('OQUE É ISSO?', 150,80)
+  text(alter2[0],80, 320)
+  text(alter2[1], 80,410)
+  text(alter2[2], 300,320)
+  text(alter2[3],300,410)
+}
+function variar2(){
+  for(i2=0;i2<30;i2++){
+    var aux2, a2, b2;
+    a2 = int(random(0,3.99));
+    b2 = int(random(0,3.99));
+    
+    aux2 = vetor2[a2].image;
+    vetor2[a2].image = vetor2[b2].image;
+    vetor2[b2].image = aux2;
+
+    aux2 = vetor2[a2].ref;
+    vetor2[a2].ref = vetor2[b2].ref;
+    vetor2[b2].ref = aux2;
+    
+  }
+}
+function variarAlternativa2(){
+  cont2 = int(random(0,3.99));
+  alter2[cont2] = nomes2[num2];
+
+  for(i2=1; i2<4; i2++){
+    alter2[(cont2+i2)%4] = nomes2[(num2+i2)%4];
+  }
+}
+function nice4(){
+   fill(255)
+  rect(140,25,340,50)
+  rect(160,160,170,50)
+  fill(255)
+  if(mouseX >140 &&mouseX< 140+340 && mouseY> 25 && mouseY<25+50){
+    fill(200)
+    stroke(0,255,0)
+  rect(140,25,340,50)
+    if(mouseIsPressed){
+      tela=13
+    }
+    }
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(32)
+  text('PROXIMA PERGUNTA',150,60)
+  text('ACERTOU',170,200)
+}
+function fase6(){
+   rect(180,95,160,120)
+  fill(255)
+  rect(10,5,150,40)
+  rect(350,5,140,40)
+  rect(140,50,230,40)
+  rect(70,290,170,40)
+  rect(70,380,170,40)
+  rect(290,380,170,40)
+  rect(290,290,170,40)
+  textSize(25)
+  text('TEMPO:'+relogio,360,30)
+  text('PONTOS:'+pontos,20,30)
+  if(relogio>=0 && relogiof>=0){
+  relogio=parseInt(relogiof/30)
+  relogiof=relogiof-1
+  }
+  if(relogio===0){
+    tela=5
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,290,170,40)
+    if(mouseIsPressed){
+      if(alter2[0]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=19
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,380,170,40)
+    if(mouseIsPressed){
+      if(alter2[1]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=19
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  if(mouseX >290 &&mouseX< 290+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,380,170,40)
+    if(mouseIsPressed){
+      if(alter2[3]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=19
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  if(mouseX>290 && mouseX<290+170 && mouseY>290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,290,170,40)
+    if(mouseIsPressed){
+      if(alter2[2]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=19
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(30)
+  text('OQUE É ISSO?', 150,80)
+  text(alter2[0],80, 320)
+  text(alter2[1], 80,410)
+  text(alter2[2], 300,320)
+  text(alter2[3],300,410)
+}
+function nice5(){
+  fill(255)
+  rect(140,25,340,50)
+  rect(160,160,170,50)
+  fill(255)
+  if(mouseX >140 &&mouseX< 140+340 && mouseY> 25 && mouseY<25+50){
+    fill(200)
+    stroke(0,255,0)
+  rect(140,25,340,50)
+    if(mouseIsPressed){
+      tela=16
+    }
+    }
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(32)
+  text('PROXIMA PERGUNTA',150,60)
+  text('ACERTOU',170,200)
+}
+function fase7(){
+  rect(180,95,160,120)
+  fill(255)
+  rect(10,5,150,40)
+  rect(350,5,140,40)
+  rect(140,50,230,40)
+  rect(70,290,170,40)
+  rect(70,380,170,40)
+  rect(290,380,170,40)
+  rect(290,290,170,40)
+  textSize(25)
+  text('TEMPO:'+relogio,360,30)
+  text('PONTOS:'+pontos,20,30)
+  if(relogio>=0 && relogiof>=0){
+  relogio=parseInt(relogiof/30)
+  relogiof=relogiof-1
+  }
+  if(relogio===0){
+    tela=5
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,290,170,40)
+    if(mouseIsPressed){
+      if(alter2[0]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=20
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,380,170,40)
+    if(mouseIsPressed){
+      if(alter2[1]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=20
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  if(mouseX >290 &&mouseX< 290+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,380,170,40)
+    if(mouseIsPressed){
+      if(alter2[3]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=20
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  if(mouseX>290 && mouseX<290+170 && mouseY>290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,290,170,40)
+    if(mouseIsPressed){
+      if(alter2[2]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=20
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(30)
+  text('OQUE É ISSO?', 150,80)
+  text(alter2[0],80, 320)
+  text(alter2[1], 80,410)
+  text(alter2[2], 300,320)
+  text(alter2[3],300,410)
+}
+function fase8(){
+  rect(180,95,160,120)
+  fill(255)
+  rect(10,5,150,40)
+  rect(350,5,140,40)
+  rect(140,50,230,40)
+  rect(70,290,170,40)
+  rect(70,380,170,40)
+  rect(290,380,170,40)
+  rect(290,290,170,40)
+  textSize(25)
+  text('TEMPO:'+relogio,360,30)
+  text('PONTOS:'+pontos,20,30)
+  if(relogio>=0 && relogiof>=0){
+  relogio=parseInt(relogiof/30)
+  relogiof=relogiof-1
+  }
+  if(relogio===0){
+    tela=5
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,290,170,40)
+    if(mouseIsPressed){
+      if(alter2[0]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=6
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  if(mouseX >70 &&mouseX< 70+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(70,380,170,40)
+    if(mouseIsPressed){
+      if(alter2[1]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=6
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  if(mouseX >290 &&mouseX< 290+170 && mouseY> 380 && mouseY<380+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,380,170,40)
+    if(mouseIsPressed){
+      if(alter2[3]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=6
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  if(mouseX>290 && mouseX<290+170 && mouseY>290 && mouseY<290+40){
+    fill(200)
+    stroke(0,255,0)
+  rect(290,290,170,40)
+    if(mouseIsPressed){
+      if(alter2[2]==vetor2[num2].ref){
+        variar2()
+        variarAlternativa2()
+      song2.play()
+      pontos=pontos+1
+      tela=6
+      }
+      else{
+        tela=5;
+        variar2();
+        variarAlternativa2()
+      }
+    }
+  }
+  
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(30)
+  text('OQUE É ISSO?', 150,80)
+  text(alter2[0],80, 320)
+  text(alter2[1], 80,410)
+  text(alter2[2], 300,320)
+  text(alter2[3],300,410)
+}
+function nice6(){
+  fill(255)
+  rect(140,25,340,50)
+  rect(160,160,170,50)
+  fill(255)
+  if(mouseX >140 &&mouseX< 140+340 && mouseY> 25 && mouseY<25+50){
+    fill(200)
+    stroke(0,255,0)
+  rect(140,25,340,50)
+    if(mouseIsPressed){
+      tela=17
+    }
+    }
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(32)
+  text('PROXIMA PERGUNTA',150,60)
+  text('ACERTOU',170,200)
+}
+function nice7(){
+  fill(255)
+  rect(140,25,340,50)
+  rect(160,160,170,50)
+  fill(255)
+  if(mouseX >140 &&mouseX< 140+340 && mouseY> 25 && mouseY<25+50){
+    fill(200)
+    stroke(0,255,0)
+  rect(140,25,340,50)
+    if(mouseIsPressed){
+      tela=18
+    }
+    }
+  fill(255,100,0)
+  stroke(0,0,200)
+  textSize(32)
+  text('PROXIMA PERGUNTA',150,60)
+  text('ACERTOU',170,200)
+}
